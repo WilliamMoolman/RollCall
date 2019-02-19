@@ -33,7 +33,7 @@
         <div class="g-signin2" data-onsuccess="onSignIn"></div>
         <div>
             <%
-            String name = (String)request.getParameter("name");
+            String name = (String)request.getParameter("profileEmail");
             %>
             <%=name %>
         </div>
