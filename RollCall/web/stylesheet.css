@@ -1,0 +1,31 @@
+img {
+  display: block;
+  max-width: 60%;
+  height: auto;
+}
+.header {
+    font-size: 150%;
+    font-weight: bold
+}
+.g-signin2{
+  width: 100%;
+  size: 40px;
+}
+
+.g-signin2 > div{
+  margin: 0 auto;
+}
+.centre-row {
+    margin: auto; 
+    max-width: 300px;
+}
+#bottom-right {
+    position: fixed;
+    bottom: 3%;
+    right: 3%;
+}
+#centre {
+    position: fixed;
+    top: 40%;
+    left: 2%;
+}
