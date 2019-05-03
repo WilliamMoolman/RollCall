@@ -40,7 +40,7 @@
                 <img src="images/backsmol.png" alt="Go Back" id="back-button" onclick="goBack()">
             </div>
         </div>
-        <form action="final">
+        <form action="send">
             <div class="center" style="height:70px;margin:0 auto;">
                 <input type="text" name="rcname" style="width: 200px;" placeholder="Enter a roll call name">
             </div>
@@ -65,7 +65,8 @@
                 <input type="text" name="rcemail" placeholder="Enter receipient email">
             </div>
             <div class="center" style="text-align: center;height:70px">
-                <input class="btn1 select-new" type="submit" >
+                <form action="send">
+                    <input class="btn1 select-new" type="submit">
             </div>
         </form>
         <div id="bottom-right"><button type="button" class="btn btn-primary" onclick="location.href='help.jsp'">Help</button></div>

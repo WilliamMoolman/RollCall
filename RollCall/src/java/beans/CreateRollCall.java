@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,7 +41,11 @@ public class CreateRollCall extends HttpServlet{
 "        <script src=\"https://apis.google.com/js/platform.js\" async defer></script>\n" +
 "        <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" crossorigin=\"anonymous\"></script>\n" +
 "        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\" crossorigin=\"anonymous\"></script>\n" +
-"        <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\" crossorigin=\"anonymous\"></script>\n" +
+"        <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\" crossorigin=\"anonymous\"></script><script>\n" +
+"            function goBack() {\n" +
+"                window.history.back();\n" +
+"            }\n" +
+"        </script>\n" +
 "    </head>\n" +
 "    <body>\n" +
 "        <div class=\"container-fluid\">\n" +
@@ -51,11 +56,16 @@ public class CreateRollCall extends HttpServlet{
 "                <div class=\"col-8\">\n" +
 "                    <p class=\"header\">St John's Roll Call</p>\n" +
 "                </div>\n" +
+"            </div><div class=\"row\">\n" +
+"                <img src=\"images/backsmol.png\" alt=\"Go Back\" id=\"back-button\" onclick=\"goBack()\">\n" +
 "            </div>"
                 + "<form action=\"made\">";
         String house = req.getParameter("house");
-        int grade = Integer.parseInt(req.getParameter("grade"));
-        html+="<input name=\"house\" id=\"hidden\" value=\""+house+"\" ><input name=\"grade\" id=\"hidden\" value=\""+grade+"\">";
+        Cookie ck=new Cookie("house",house);
+        res.addCookie(ck);
+        String grade = req.getParameter("grade");
+        Cookie ck2=new Cookie("grade",grade);
+        res.addCookie(ck2);
         res.setContentType("text/html");
         
         try {
@@ -67,7 +77,9 @@ public class CreateRollCall extends HttpServlet{
             ResultSet rs = s.executeQuery(sql);
             PrintWriter out = res.getWriter();
             String result = "";
+            int i = 0;
             while (rs.next()) {
+                i++;
                 String name = rs.getString("Name");
                 String surname = rs.getString("Surname");
                 String ID = rs.getString("StuID");
@@ -79,7 +91,7 @@ public class CreateRollCall extends HttpServlet{
 "                    <h5>"+surname+"</h5>\n" +
 "                </div>\n" +
 "                <div class=\"col border\">\n" +
-"                    <input value=\"present\" name =\""+ID+"\"type =\"checkbox\">\n" +
+"                    <input value=\""+ID+"\" name =\""+i+"\"type =\"checkbox\">\n" +
 "                </div>\n" +
 "            </div>";
             }
