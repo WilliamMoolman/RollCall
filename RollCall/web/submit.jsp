@@ -47,22 +47,22 @@
             <div class="center" style="height:70px;" >
                 <select name="house" class="select-new" >
                     <option value="100" selected disabled hidden>Pick a Housemaster:</option>
-                    <option value="Nash">Nash</option>
-                    <option value="Hill">Hill</option>
-                    <option value="Clayton">Clayton</option>
-                    <option value="Thomson">Thomson</option>
-                    <option value="Alston">Alston</option>
-                    <option value="Clarke">Clarke</option>
-                    <option value="Hodgson">Hodgson</option>
-                    <option value="Fleming">Fleming</option>
-                    <option value="Runge">Runge</option>
+                    <option value="caldwella">Nash</option>
+                    <option value="libera">Hill</option>
+                    <option value="murison">Clayton</option>
+                    <option value="stocks">Thomson</option>
+                    <option value="black">Alston</option>
+                    <option value="dereuckr">Clarke</option>
+                    <option value="tswatswa">Hodgson</option>
+                    <option value="venter">Fleming</option>
+                    <option value="byrne">Runge</option>
                 </select>
             </div>
             <div class="center" style="text-align: center;height:20px">
                 - or -
             </div>
             <div class="center" style="text-align: center;height:70px">
-                <input type="text" name="rcemail" placeholder="Enter receipient email">
+                <input type="text" name="rcemail" placeholder="Enter receipient username">
             </div>
             <div class="center" style="text-align: center;height:70px">
                 <form action="send">

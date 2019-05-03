@@ -46,7 +46,7 @@ and open the template in the editor.
             <button type="button" class="btn1" onclick="location.href='view.jsp'">View Roll Calls</button>
         </div>
         <div class="center">
-            <button type="button" class="btn1" >Log Out</button>
+            <button type="button" class="btn1" onclick="signOut()" >Log Out</button>
         </div>
         
         <div id="bottom-right"><button type="button" class="btn btn-primary" onclick="location.href='help.jsp'">Help</button></div>
@@ -63,6 +63,7 @@ and open the template in the editor.
                 auth2.signOut().then(function () {
                     document.cookie = "username=";
                     console.log('User signed out.');
+                    window.location.href='index.jsp';
                 });
             }
         </script> 

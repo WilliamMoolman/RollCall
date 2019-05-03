@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>SJC Roll Call | Help</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Some helpful stuff, all you need to know, i mean its intuitive</h1>
     </body>
 </html>

@@ -32,4 +32,13 @@
         <url-pattern>/send</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>deepview</servlet-name>
+        <servlet-class>beans.Deepview</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deepview</servlet-name>
+        <url-pattern>/deepview</url-pattern>
+    </servlet-mapping>
+    
 </web-app>

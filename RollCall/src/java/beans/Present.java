@@ -88,7 +88,6 @@ public class Present extends HttpServlet{
             Connection conn = sqlJDBC.SQLconnect();
             String sql = "select name,surname,StuID from Users where House = '"+house+"' and Grade = '"+grade+"'";
             Statement s = conn.createStatement();
-            s.executeUpdate(sql);
             ResultSet rs = s.executeQuery(sql);
             String[] checkID = new String[30];
             String[] present = new String[30];
@@ -160,8 +159,14 @@ public class Present extends HttpServlet{
         for(int l = 0;l<numPresent;l++){
             pres+=present[l]+",";
         }
+        String abs = "";
+        for(int l = 0;l<numAbsent;l++){
+            abs+=absent[l]+",";
+        }
         Cookie ck = new Cookie("present",pres);
+        Cookie ck2 = new Cookie("absent",abs);
         res.addCookie(ck);
+        res.addCookie(ck2);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Present.class.getName()).log(Level.SEVERE, null, ex);
         }
