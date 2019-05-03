@@ -11,7 +11,12 @@ img {
   width: 100%;
   size: 40px;
 }
-
+#hidden{
+    display:none;
+}
+.hide{
+    display:none;
+}
 .g-signin2 > div{
   margin: 0 auto;
 }
@@ -24,8 +29,62 @@ img {
     bottom: 3%;
     right: 3%;
 }
-#centre {
+#login-centre {
     position: fixed;
     top: 40%;
     left: 2%;
+}
+
+.center { 
+  height: 130px;
+  position: relative;
+}
+
+.center button {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.btn1 {
+  border: none;
+  color: white;
+  overflow: hidden;
+  margin: 1rem;
+  padding: 0;
+  text-transform: uppercase;
+  width: 200px;
+  height: 80px;
+  background-color: transparent;
+  border: 2px solid #426FC5;
+  color: #426FC5;
+  font-size: 20px
+}
+
+.border{
+    border: solid;
+}
+
+select {
+    display: block;
+    border: none;
+    color: white;
+    overflow: hidden;
+    margin: 1rem auto;
+    padding: 0;
+    text-transform: uppercase;
+    width: 200px;
+    height: 80px;
+    background-color: transparent;
+    border: 2px solid #426FC5;
+    color: #426FC5;
+    font-size: 20px
+}
+
+input[type='checkbox'] {
+    width: 30px;
+    height: 30px;
 }
