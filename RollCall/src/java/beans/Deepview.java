@@ -69,18 +69,17 @@ public class Deepview extends HttpServlet{
 "where rollcallid='"+id+"'\n" +
 "order by surname");
             while(rs.next()){
-                html+="<div class=\"row \">\n" +
+                String style = "";
+                if(rs.getString("Present").equals("false")){
+                    style = "style=\"background-color: #ff6666\"";
+                }
+                html+="<div class=\"row \""+
+                       style +">\n" +
 "                        <div class=\"col border\">\n" +
 "                            \n" +rs.getString("Name")+
 "                        </div>\n" +
 "                        <div class=\"col border\">\n" +
 "                            \n" +rs.getString("Surname")+
-"                        </div>\n" +
-"                        <div class=\"col border\">\n" +
-"                            \n" +rs.getString("House")+
-"                        </div>\n" +
-"                        <div class=\"col border\">\n" +
-"                            \n" +rs.getString("Grade")+
 "                        </div>\n" +
 "                        <div class=\"col border\">\n" +
 "                            \n" +rs.getString("Present")+
@@ -96,11 +95,7 @@ public class Deepview extends HttpServlet{
         res.setContentType("text/html");
         out.print(html);
         
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Deepview.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Deepview.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (SQLException | IOException ex) {
             Logger.getLogger(Deepview.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

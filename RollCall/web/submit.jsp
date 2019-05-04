@@ -46,7 +46,7 @@
             </div>
             <div class="center" style="height:70px;" >
                 <select name="house" class="select-new" >
-                    <option value="100" selected disabled hidden>Pick a Housemaster:</option>
+                    <option value="100" selected>Pick a Housemaster:</option>
                     <option value="caldwella">Nash</option>
                     <option value="libera">Hill</option>
                     <option value="murison">Clayton</option>

@@ -106,7 +106,6 @@ public class Present extends HttpServlet{
                 
                 for(int z = 1;z<=numTotal;z++){
                     String param = req.getParameter(Integer.toString(z));
-                    System.out.println(param);
                     label1:
                     try {
                         if(param.equals(checkID[y])){
@@ -118,11 +117,8 @@ public class Present extends HttpServlet{
                     } catch(NullPointerException e) {
                     }
                     
-                    System.out.println(z+" "+y);
                 }
                 if(!inset){
-                        System.out.println("insert in absent");
-                        System.out.println(checkID[y]);
                         absent[numAbsent]=checkID[y];
                         numAbsent++;
                     }
@@ -167,7 +163,7 @@ public class Present extends HttpServlet{
         Cookie ck2 = new Cookie("absent",abs);
         res.addCookie(ck);
         res.addCookie(ck2);
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(Present.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

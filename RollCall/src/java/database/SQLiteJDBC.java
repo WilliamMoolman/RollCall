@@ -7,6 +7,8 @@ package database;
 
 import java.sql.SQLException;
 import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.sqlite.SQLiteDataSource;
 
 /**
@@ -15,14 +17,19 @@ import org.sqlite.SQLiteDataSource;
  */
 public class SQLiteJDBC {
     
-    public Connection SQLconnect() throws ClassNotFoundException, SQLException {
-        Connection c;
+    public Connection SQLconnect(){
+        try {
+            Connection c;
             Class.forName("org.sqlite.JDBC");
             SQLiteDataSource ds = new SQLiteDataSource();
             ds.setUrl("jdbc:sqlite:C:\\Users\\moolm\\Desktop\\Coding\\Github\\RollCall\\RollCall\\src\\java\\database\\Users.db");
             c = ds.getConnection();
-            System.out.println("Connection to Users success.");
+            
             return c;
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println("Connection to Users failure.");
+            return null;
+        }
     }
     
 }
