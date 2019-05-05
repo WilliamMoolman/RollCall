@@ -26,8 +26,11 @@ public class SQLiteJDBC {
             c = ds.getConnection();
             
             return c;
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (ClassNotFoundException ex) {
             System.out.println("Connection to Users failure.");
+            return null;
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLiteJDBC.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }

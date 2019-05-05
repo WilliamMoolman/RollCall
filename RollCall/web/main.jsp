@@ -3,6 +3,10 @@
     Created on : 03 May 2019, 8:10:37 AM
     Author     : moolm
 --%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="database.SQLiteJDBC"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -45,6 +49,26 @@ and open the template in the editor.
         <div class="center">
             <button type="button" class="btn1" onclick="location.href='view.jsp'">View Roll Calls</button>
         </div>
+        <%
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("username")) {
+                    SQLiteJDBC sqlJDBC = new SQLiteJDBC();
+                    Connection conn = sqlJDBC.SQLconnect();
+                    Statement s = conn.createStatement();
+                    ResultSet rs = s.executeQuery("select * from Admin");
+                    while(rs.next()){
+                        if(rs.getString("StuID").equals(cookie.getValue())){
+                            %>
+                                <div class="center">
+                                    <button type="button" class="btn1" onclick="location.href='admin.jsp'">Admin Controls</button>
+                                </div>
+                            <%
+                        }
+                    }
+                }
+            }
+        %>
         <div class="center">
             <button type="button" class="btn1" onclick="signOut()" >Log Out</button>
         </div>
@@ -54,8 +78,8 @@ and open the template in the editor.
             function onSignIn(googleUser) {
                 var profile = googleUser.getBasicProfile();
                 //document.getElementById('g-email').innerHTML = profile.getEmail();
-                var uname= profile.getEmail().substr(0, profile.getEmail().indexOf('@')); 
-                document.cookie = "username=".concat(uname);
+                //var uname= profile.getEmail().substr(0, profile.getEmail().indexOf('@')); 
+                //document.cookie = "username=".concat(uname);
                 console.log('singed in-mmain');
             }
             function signOut() {
