@@ -49,7 +49,7 @@ public class Admin2 extends HttpServlet {
                                     + "values('" + id + "','" + name + "','" + surname + "','" + grade + "','" + house + "')");
                             redirect(res);
                         } else {
-                            //student already exists
+                            exists(res);
                         }
 
                     }
@@ -65,7 +65,7 @@ public class Admin2 extends HttpServlet {
                             redirect(res);
 
                         } else {
-                            //there is no such user
+                            noExists(res);
                         }
 
                     }
@@ -82,7 +82,7 @@ public class Admin2 extends HttpServlet {
                             redirect(res);
 
                         } else {
-                            //admmin exists
+                            exists(res);
                         }
 
                     }
@@ -97,7 +97,7 @@ public class Admin2 extends HttpServlet {
                             s.executeUpdate("delete from admin where StuID='" + id + "'");
                             redirect(res);
                         } else {
-                            //admmin not exist
+                            noExists(res);
                         }
 
                     }
@@ -154,23 +154,113 @@ public class Admin2 extends HttpServlet {
         out.print(html);
     }
 
+    public void exists(HttpServletResponse res) throws IOException {
+        System.out.println("exists");
+        String html = "<!DOCTYPE html>\n"
+                + "<html>\n"
+                + "    <head>\n"
+                + "        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n"
+                + "        <title>SJC Roll Call | Take</title>\n"
+                + "        <meta charset=\"UTF-8\">\n"
+                + "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+                + "        <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" crossorigin=\"anonymous\">\n"
+                + "        <link rel=\"stylesheet\" type=\"text/css\" href=\"stylesheet.css\">\n"
+                + "        <meta name=\"google-signin-client_id\" content=\"334817504785-g0vqsgqoii5hc17djc5bkefeottshc3c.apps.googleusercontent.com\">\n"
+                + "        <link rel=\"shortcut icon\" type=\"image/png\" href=\"images/logo.png\">\n"
+                + "        <script src=\"https://apis.google.com/js/platform.js\" async defer></script>\n"
+                + "        <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" crossorigin=\"anonymous\"></script>\n"
+                + "        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\" crossorigin=\"anonymous\"></script>\n"
+                + "        <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\" crossorigin=\"anonymous\"></script><script>\n"
+                + "            function goBack() {\n"
+                + "                window.history.back();\n"
+                + "            }\n"
+                + "        </script>\n"
+                + "    </head>\n"
+                + "    <body>\n"
+                + "        <div class=\"container-fluid\">\n"
+                + "            <div class=\"row\">\n"
+                + "                <div class=\"col\" >\n"
+                + "                    <img src=\"images/logo.png\" alt=\"St John's Logo\">\n"
+                + "                </div>\n"
+                + "                <div class=\"col-8\">\n"
+                + "                    <p class=\"header\">St John's Roll Call</p>\n"
+                + "                </div>\n"
+                + "            </div><div class=\"row\">\n"
+                + "                <img src=\"images/backsmol.png\" alt=\"Go Back\" id=\"back-button\" onclick=\"goBack()\">\n"
+                + "            </div></div>\n"
+                + "        <div class=\"center\">\n"
+                + "            <h3 style=\"text-align: center\">User already exists in database</h3>\n"
+                + "        </div>\n"
+                + "        <div id=\"bottom-right\"><button type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='help.jsp'\">Help</button></div>\n"
+                + "    </body>\n"
+                + "</html>";
+        PrintWriter out = res.getWriter();
+        res.setContentType("text/html");
+        out.print(html);
+    }
+
+    public void noExists(HttpServletResponse res) throws IOException {
+        System.out.println("exists");
+        String html = "<!DOCTYPE html>\n"
+                + "<html>\n"
+                + "    <head>\n"
+                + "        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n"
+                + "        <title>SJC Roll Call | Take</title>\n"
+                + "        <meta charset=\"UTF-8\">\n"
+                + "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+                + "        <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" crossorigin=\"anonymous\">\n"
+                + "        <link rel=\"stylesheet\" type=\"text/css\" href=\"stylesheet.css\">\n"
+                + "        <meta name=\"google-signin-client_id\" content=\"334817504785-g0vqsgqoii5hc17djc5bkefeottshc3c.apps.googleusercontent.com\">\n"
+                + "        <link rel=\"shortcut icon\" type=\"image/png\" href=\"images/logo.png\">\n"
+                + "        <script src=\"https://apis.google.com/js/platform.js\" async defer></script>\n"
+                + "        <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" crossorigin=\"anonymous\"></script>\n"
+                + "        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\" crossorigin=\"anonymous\"></script>\n"
+                + "        <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\" crossorigin=\"anonymous\"></script><script>\n"
+                + "            function goBack() {\n"
+                + "                window.history.back();\n"
+                + "            }\n"
+                + "        </script>\n"
+                + "    </head>\n"
+                + "    <body>\n"
+                + "        <div class=\"container-fluid\">\n"
+                + "            <div class=\"row\">\n"
+                + "                <div class=\"col\" >\n"
+                + "                    <img src=\"images/logo.png\" alt=\"St John's Logo\">\n"
+                + "                </div>\n"
+                + "                <div class=\"col-8\">\n"
+                + "                    <p class=\"header\">St John's Roll Call</p>\n"
+                + "                </div>\n"
+                + "            </div><div class=\"row\">\n"
+                + "                <img src=\"images/backsmol.png\" alt=\"Go Back\" id=\"back-button\" onclick=\"goBack()\">\n"
+                + "            </div></div>\n"
+                + "        <div class=\"center\">\n"
+                + "            <h3 style=\"text-align: center\">User does not exist in database</h3>\n"
+                + "        </div>\n"
+                + "        <div id=\"bottom-right\"><button type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='help.jsp'\">Help</button></div>\n"
+                + "    </body>\n"
+                + "</html>";
+        PrintWriter out = res.getWriter();
+        res.setContentType("text/html");
+        out.print(html);
+    }
+
     public void redirect(HttpServletResponse res) throws IOException {
         System.out.println("red");
         PrintWriter out = res.getWriter();
-            out.print("<html>\n"
-                    + "    <head>\n"
-                    + "        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n"
-                    + "        <title>Redirect</title>\n"
-                    + "        <script>\n"
-                    + "            function redirect() {\n"
-                    + "                window.location.href='main.jsp';\n"
-                    + "            }\n"
-                    + "        </script>\n"
-                    + "    </head>\n"
-                    + "    <body onload=\"redirect()\">\n"
-                    + "        <h1>Redirecting...</h1>\n"
-                    + "    </body>\n"
-                    + "</html>");
+        out.print("<html>\n"
+                + "    <head>\n"
+                + "        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n"
+                + "        <title>Redirect</title>\n"
+                + "        <script>\n"
+                + "            function redirect() {\n"
+                + "                window.location.href='main.jsp';\n"
+                + "            }\n"
+                + "        </script>\n"
+                + "    </head>\n"
+                + "    <body onload=\"redirect()\">\n"
+                + "        <h1>Redirecting...</h1>\n"
+                + "    </body>\n"
+                + "</html>");
     }
 
 }

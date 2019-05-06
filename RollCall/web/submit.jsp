@@ -46,16 +46,24 @@
             </div>
             <div class="center" style="height:70px;" >
                 <select name="house" class="select-new" >
-                    <option value="100" selected>Pick a Housemaster:</option>
-                    <option value="caldwella">Nash</option>
-                    <option value="libera">Hill</option>
-                    <option value="murison">Clayton</option>
-                    <option value="stocks">Thomson</option>
-                    <option value="black">Alston</option>
-                    <option value="dereuckr">Clarke</option>
-                    <option value="tswatswa">Hodgson</option>
-                    <option value="venter">Fleming</option>
-                    <option value="byrne">Runge</option>
+                    <%
+                        Cookie[] cookies = request.getCookies();
+                        String house = "";
+                        for (Cookie cookie : cookies) {
+                            if (cookie.getName().equals("house")) {
+                                house = cookie.getValue();
+                            }
+                        }
+                    %>
+                    <option value="caldwella"<% if(house.equals("Nash")){ %> selected <% } %>>Nash</option>
+                    <option value="libera"<% if(house.equals("Hill")){ %> selected <% } %>>Hill</option>
+                    <option value="murison"<% if(house.equals("Clayton")){ %> selected <% } %>>Clayton</option>
+                    <option value="stocks"<% if(house.equals("Thomson")){ %> selected <% } %>>Thomson</option>
+                    <option value="black"<% if(house.equals("Alston")){ %> selected <% } %>>Alston</option>
+                    <option value="dereuckr"<% if(house.equals("Clarke")){ %> selected <% } %>>Clarke</option>
+                    <option value="tswatswa"<% if(house.equals("Hodgson")){ %> selected <% } %>>Hodgson</option>
+                    <option value="venter"<% if(house.equals("Fleming")){ %> selected <% } %>>Fleming</option>
+                    <option value="byrne"<% if(house.equals("Runge")){ %> selected <% } %>>Runge</option>
                 </select>
             </div>
             <div class="center" style="text-align: center;height:20px">
@@ -63,6 +71,9 @@
             </div>
             <div class="center" style="text-align: center;height:70px">
                 <input type="text" name="rcemail" placeholder="Enter receipient username">
+            </div>
+            <div class="center" style="text-align: center" >
+                <p style="padding-top: 10px">Email list to recipient?</p><input type="checkbox" name="email" value="true" >
             </div>
             <div class="center" style="text-align: center;height:70px">
                 <form action="send">

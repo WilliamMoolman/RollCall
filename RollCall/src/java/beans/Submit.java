@@ -32,7 +32,7 @@ public class Submit extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         Cookie[] cookies = req.getCookies();
-        String house = null, grade = null, present = "", absent = "", receiver = "", submitter = "";
+        String house = null, grade = null, present = "", absent = "", receiver = "", submitter = "", emailHtml = "";
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("house")) {
@@ -52,6 +52,7 @@ public class Submit extends HttpServlet {
                 }
             }
         }
+
         if (req.getParameter("house").equals("100") || req.getParameter("rcname").isEmpty()) {
             if (req.getParameter("rcemail").isEmpty() || req.getParameter("rcname").isEmpty()) {
                 String html = "<!DOCTYPE html>\n"
@@ -113,15 +114,25 @@ public class Submit extends HttpServlet {
                     String rollCallID = rs.getString("RollCallID");
                     Scanner scP = new Scanner(present).useDelimiter(",");
                     Scanner scA = new Scanner(absent).useDelimiter(",");
+                    emailHtml+="Present:\n\n";
                     while (scP.hasNext()) {
+                        String id = scP.next();
                         sql = "insert into Entries(RollCallID,StuID,Present)\n"
-                                + "values('" + rollCallID + "','" + scP.next() + "','true')";
+                                + "values('" + rollCallID + "','" + id + "','true')";
                         s.executeUpdate(sql);
+                            
+                        rs = s.executeQuery("select name,surname from users where Stuid = '"+id+"'");
+                        emailHtml += rs.getString("Name")+ " " +rs.getString("Surname")+"\n";
                     }
+                    emailHtml+="\nAbsent:\n\n";
                     while (scA.hasNext()) {
+                        String id = scA.next();
                         sql = "insert into Entries(RollCallID,StuID,Present)\n"
-                                + "values('" + rollCallID + "','" + scA.next() + "','false')";
+                                + "values('" + rollCallID + "','" + id + "','false')";
                         s.executeUpdate(sql);
+                        
+                        rs = s.executeQuery("select name,surname from users where Stuid = '"+id+"'");
+                        emailHtml += rs.getString("Name")+ " " +rs.getString("Surname")+"\n";
                     }
 
                 } catch (SQLException e) {
@@ -198,6 +209,11 @@ public class Submit extends HttpServlet {
                     + "        <h1>Redirecting...</h1>\n"
                     + "    </body>\n"
                     + "</html>");
+        }
+        if (req.getParameter("email").equals("true")) {
+            emailHtml+="\nRoll Call taken by "+submitter;
+            Email.send("sjcrollcall@gmail.com", "SJCrollcall1?", receiver + "@stjohnscollege.co.za", "Roll Call: " + req.getParameter("rcname") + "(" + house + ": " + grade + ")", emailHtml);
+            
         }
 
     }

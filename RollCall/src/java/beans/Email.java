@@ -23,7 +23,7 @@ public class Email {
         p.put("mail.smtp.auth", "true");
         p.put("mail.smtp.port", "465");
 
-        Session session = Session.getDefaultInstance(p,
+        Session session = Session.getInstance(p,
                 new javax.mail.Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -45,7 +45,7 @@ public class Email {
 
     }
     public static void main(String[] args) {
-        Email.send("sjcrollcall@gmail.com","SJCrollcall1?","23723@gmail.com","Test1","How r u?");    
+        Email.send("sjcrollcall@gmail.com","SJCrollcall1?","23723@stjohnscollege.co.za","Test1","How r u?");    
     }
 } 
 // 
