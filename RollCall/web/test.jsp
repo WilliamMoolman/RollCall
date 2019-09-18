@@ -23,7 +23,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col" >
-                    <img src="images/logo.png" alt="St John's Logo">
+                    <img src="images/tick.png" alt="St John's Logo" height="150" width="150">
                     
                 </div>
                 <div class="col-8">

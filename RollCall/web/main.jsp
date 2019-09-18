@@ -31,13 +31,27 @@ and open the template in the editor.
         <link rel="shortcut icon" type="image/png" href="images/tick.png">
     </head>
     <body>
+        <div class="area" >
+            <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
+    
         <div class="g-signin2" id="hidden" data-onsuccess="onSignIn">Sign In</div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col" >
-                    <img src="images/tick.png" alt="St John's Logo">
+                    <img src="images/tick.png" alt="St John's Logo" height="150" width="150">
                 </div>
-                <div class="col-8">
+                <div class="col-7">
                     <p class="header">St John's Roll Call</p>
                 </div>
             </div>
@@ -91,7 +105,7 @@ and open the template in the editor.
                 });
             }
         </script> 
-        
+        </div >
     </body>
 </html>
 

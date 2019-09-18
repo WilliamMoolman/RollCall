@@ -22,7 +22,7 @@ public class SQLiteJDBC {
             Connection c;
             Class.forName("org.sqlite.JDBC");
             SQLiteDataSource ds = new SQLiteDataSource();
-            ds.setUrl("jdbc:sqlite:C:\\Users\\moolm\\Desktop\\Coding\\Github\\RollCall\\RollCall\\src\\java\\database\\Users.db");
+            ds.setUrl("jdbc:sqlite:C:\\Users\\moolm\\Documents\\GitHub\\RollCall\\RollCall\\src\\java\\database\\Users.db");
             c = ds.getConnection();
             
             return c;

@@ -210,7 +210,7 @@ public class Submit extends HttpServlet {
                     + "    </body>\n"
                     + "</html>");
         }
-        if (req.getParameter("email").equals("true")) {
+        if (req.getParameter("email") != null) {
             emailHtml+="\nRoll Call taken by "+submitter;
             Email.send("sjcrollcall@gmail.com", "SJCrollcall1?", receiver + "@stjohnscollege.co.za", "Roll Call: " + req.getParameter("rcname") + "(" + house + ": " + grade + ")", emailHtml);
             

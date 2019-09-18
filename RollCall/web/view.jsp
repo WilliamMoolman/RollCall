@@ -43,7 +43,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col" >
-                    <img src="images/logo.png" alt="St John's Logo">
+                    <img src="images/tick.png" alt="St John's Logo" height="150" width="150">
                 </div>
                 <div class="col-8">
                     <p class="header">St John's Roll Call</p>
@@ -57,7 +57,7 @@
                 Connection conn;
                 conn = sqlJDBC.SQLconnect();
                 Statement s = conn.createStatement();
-                ResultSet rs = s.executeQuery("select *, substr(Date,0,12) as goodtime from RollCalls where ReceiverID = '23723' or SubmitterID = '23723'");
+                ResultSet rs = s.executeQuery("select *, substr(Date,0,12) as goodtime from RollCalls where ReceiverID = '23723' or SubmitterID = '23723' order by Date DESC");
                 while(rs.next()){
                     %>
                     <div class="row border" onclick="onClick(<%=rs.getString("RollCallID")%>)">

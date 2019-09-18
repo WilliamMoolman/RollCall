@@ -10,8 +10,17 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SJC Roll Call | Help</title>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
     </head>
     <body>
-        <h1>Some helpful stuff, all you need to know, i mean its intuitive</h1>
+        <div class="row">
+                <img src="images/backsmol.png" alt="Go Back" id="back-button" onclick="goBack()">
+            </div>
+        <h1>Contact William Moolman for help: 0820517302</h1>
+        <p><br>Detailed help will be added in the future</p>
     </body>
 </html>

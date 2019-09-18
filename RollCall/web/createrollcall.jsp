@@ -27,10 +27,11 @@
         </script>
     </head>
     <body>
+        
         <div class="container-fluid">
             <div class="row">
                 <div class="col" >
-                    <img src="images/logo.png" alt="St John's Logo">
+                    <img src="images/tick.png" alt="St John's Logo" height="150" width="150">
                     
                 </div>
                 <div class="col-8">
@@ -81,5 +82,6 @@
         </form>
 
         <div id="bottom-right"><button type="button" class="btn btn-primary" onclick="location.href='help.jsp'">Help</button></div>
-    </body>
+        
+        </body>
 </html>

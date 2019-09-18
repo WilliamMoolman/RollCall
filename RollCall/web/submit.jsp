@@ -30,7 +30,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col" >
-                    <img src="images/logo.png" alt="St John's Logo">
+                    <img src="images/tick.png" alt="St John's Logo" height="150" width="150">
                 </div>
                 <div class="col-8">
                     <p class="header">St John's Roll Call</p>
@@ -73,11 +73,10 @@
                 <input type="text" name="rcemail" placeholder="Enter receipient username">
             </div>
             <div class="center" style="text-align: center" >
-                <p style="padding-top: 10px">Email list to recipient?</p><input type="checkbox" name="email" value="true" >
+                <!--<p style="padding-top: 10px">Email list to recipient?</p><input type="checkbox" name="email" value="true">-->
             </div>
             <div class="center" style="text-align: center;height:70px">
-                <form action="send">
-                    <input class="btn1 select-new" type="submit">
+                <input class="btn1 select-new" type="submit">
             </div>
         </form>
         <div id="bottom-right"><button type="button" class="btn btn-primary" onclick="location.href='help.jsp'">Help</button></div>

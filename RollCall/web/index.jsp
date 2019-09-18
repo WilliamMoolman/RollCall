@@ -20,7 +20,19 @@ and open the template in the editor.
         
     </head>
     <body>
-        
+        <div class="area" >
+            <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
         <div class="container-fluid">
             <div class="row">
                 <div class="col" >
@@ -56,6 +68,7 @@ and open the template in the editor.
                 });
             }
     </script>
+        </div>
     </body>
     
 </html>
