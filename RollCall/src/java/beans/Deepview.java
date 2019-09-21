@@ -23,8 +23,13 @@ import javax.servlet.http.HttpServletResponse;
  * @author moolm
  */
 public class Deepview extends HttpServlet{
+    
+    @Override
+    //Receives HTML request from user. 
+    //HttpServletRequest is the information entered on the website and sent to the program as the user sends the request
+    //HttpServletResponse is the website data that will be sent to the user on their webpage
     public void doGet(HttpServletRequest req,HttpServletResponse res){
-        try {
+        try {//program shows list of past roll call of students
             String id = req.getParameter("id");
             String html = "<html>\n" +
                     "    <head>\n" +
@@ -62,7 +67,7 @@ public class Deepview extends HttpServlet{
             SQLiteJDBC sqlJDBC = new SQLiteJDBC();
             Connection conn;
             conn = sqlJDBC.SQLconnect();
-            Statement s = conn.createStatement();
+            Statement s = conn.createStatement();//gets data from database
             ResultSet rs = s.executeQuery("select name,surname,house,grade,present\n" +
 "from entries\n" +
 "left join users on users.StuID=Entries.StuID\n" +

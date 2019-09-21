@@ -16,8 +16,8 @@ import org.sqlite.SQLiteDataSource;
  * @author moolm
  */
 public class SQLiteJDBC {
-    
-    public Connection SQLconnect(){
+    //externally sourced code
+    public Connection SQLconnect(){//used to connect to database
         try {
             Connection c;
             Class.forName("org.sqlite.JDBC");

@@ -25,16 +25,19 @@ import javax.servlet.http.HttpServletResponse;
 public class Admin2 extends HttpServlet {
 
     @Override
+    //Receives HTML request from user. 
+    //HttpServletRequest is the information entered on the website and sent to the program as the user sends the request
+    //HttpServletResponse is the website data that will be sent to the user on their webpage
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         try {
-            String type = req.getParameter("type");
+            String type = req.getParameter("type");//gets info of user entered 
             String id = req.getParameter("id");
 
             SQLiteJDBC sqlJDBC = new SQLiteJDBC();
             Connection conn = sqlJDBC.SQLconnect();
             Statement s = conn.createStatement();
             ResultSet rs;
-            switch (type) {
+            switch (type) {//SQL statements for admin controls
                 case "+u":
                     String name = req.getParameter("name");
                     String surname = req.getParameter("surname");
@@ -54,7 +57,7 @@ public class Admin2 extends HttpServlet {
 
                     }
                     break;
-                case "-u":
+                case "-u"://removing a user
                     rs = s.executeQuery("select count() as num from users where stuid='" + id + "'");
 
                     if (id.isEmpty()) {
@@ -71,7 +74,7 @@ public class Admin2 extends HttpServlet {
                     }
 
                     break;
-                case "+a":
+                case "+a"://adding an admin
                     rs = s.executeQuery("select count() as num from admin where stuid='" + id + "'");
 
                     if (id.isEmpty()) {
@@ -88,7 +91,7 @@ public class Admin2 extends HttpServlet {
                     }
 
                     break;
-                case "-a":
+                case "-a"://removing an admin
                     rs = s.executeQuery("select count() as num from admin where stuid='" + id + "'");
                     if (id.isEmpty()) {
                         noInfo(res);
@@ -109,7 +112,7 @@ public class Admin2 extends HttpServlet {
         }
     }
 
-    public void noInfo(HttpServletResponse res) throws IOException {
+    public void noInfo(HttpServletResponse res) throws IOException {//if user does not put in all the required information
         System.out.println("no info");
         String html = "<!DOCTYPE html>\n"
                 + "<html>\n"
@@ -154,7 +157,7 @@ public class Admin2 extends HttpServlet {
         out.print(html);
     }
 
-    public void exists(HttpServletResponse res) throws IOException {
+    public void exists(HttpServletResponse res) throws IOException {//if user tries to add a user that already exists
         System.out.println("exists");
         String html = "<!DOCTYPE html>\n"
                 + "<html>\n"
@@ -199,7 +202,7 @@ public class Admin2 extends HttpServlet {
         out.print(html);
     }
 
-    public void noExists(HttpServletResponse res) throws IOException {
+    public void noExists(HttpServletResponse res) throws IOException {//if user tries to delete a user not in database
         System.out.println("exists");
         String html = "<!DOCTYPE html>\n"
                 + "<html>\n"
@@ -244,7 +247,7 @@ public class Admin2 extends HttpServlet {
         out.print(html);
     }
 
-    public void redirect(HttpServletResponse res) throws IOException {
+    public void redirect(HttpServletResponse res) throws IOException {//redirect the user to the main page after completing action
         System.out.println("red");
         PrintWriter out = res.getWriter();
         out.print("<html>\n"

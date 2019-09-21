@@ -73,7 +73,7 @@
                 <input type="text" name="rcemail" placeholder="Enter receipient username">
             </div>
             <div class="center" style="text-align: center" >
-                <!--<p style="padding-top: 10px">Email list to recipient?</p><input type="checkbox" name="email" value="true">-->
+                <p style="padding-top: 10px">Email list to recipient?</p><input type="checkbox" name="email" value="true">
             </div>
             <div class="center" style="text-align: center;height:70px">
                 <input class="btn1 select-new" type="submit">

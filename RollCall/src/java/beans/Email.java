@@ -1,4 +1,5 @@
 /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -7,12 +8,10 @@ package beans;
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
-/**
- *
- * @author moolm
- */
-public class Email {
 
+public class Email {
+    //creates framework for email functionality
+    //externally sourced code
     public static void send(String from, String password, String to, String subject, String message) {
 
         Properties prop = new Properties();
@@ -30,13 +29,11 @@ public class Email {
         });
             
         try {
-            MimeMessage mes = new MimeMessage(session);
-            mes.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            mes.setSubject(subject);
-            mes.setText(message);
-            //send message  
-            Transport.send(mes);
-            System.out.println("message sent successfully");
+            MimeMessage mess = new MimeMessage(session);
+            mess.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            mess.setSubject(subject);
+            mess.setText(message);
+            Transport.send(mess);
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
@@ -46,4 +43,4 @@ public class Email {
         Email.send("sjcrollcall@gmail.com","SJCrollcall1?","23723@stjohnscollege.co.za","Test1","How r u?");    
     }
 } 
-// 
+

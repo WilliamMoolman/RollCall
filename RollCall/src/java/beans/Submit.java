@@ -13,8 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -29,9 +27,11 @@ import javax.servlet.http.HttpServletResponse;
 public class Submit extends HttpServlet {
 
     @Override
-
+    //Receives HTML request from user. 
+    //HttpServletRequest is the information entered on the website and sent to the program as the user sends the request
+    //HttpServletResponse is the website data that will be sent to the user on their webpage
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        Cookie[] cookies = req.getCookies();
+        Cookie[] cookies = req.getCookies();//
         String house = null, grade = null, present = "", absent = "", receiver = "", submitter = "", emailHtml = "";
         if (cookies != null) {
             for (Cookie cookie : cookies) {
@@ -54,7 +54,7 @@ public class Submit extends HttpServlet {
         }
 
         if (req.getParameter("house").equals("100") || req.getParameter("rcname").isEmpty()) {
-            if (req.getParameter("rcemail").isEmpty() || req.getParameter("rcname").isEmpty()) {
+            if (req.getParameter("rcemail").isEmpty() || req.getParameter("rcname").isEmpty()) {//if user did not enter correct data
                 String html = "<!DOCTYPE html>\n"
                         + "<html>\n"
                         + "    <head>\n"
@@ -102,7 +102,7 @@ public class Submit extends HttpServlet {
                 SQLiteJDBC sqlJDBC = new SQLiteJDBC();
                 Connection conn;
                 try {
-                    conn = sqlJDBC.SQLconnect();
+                    conn = sqlJDBC.SQLconnect();//adds rollcall to database
                     String date = "strftime('%Y-%m-%d %H:%M:%S','now')";
                     String sql = "insert into RollCalls(SubmitterID,ReceiverID,Title,Date,House,Grade)\n"
                             + "values('" + submitter + "','" + receiver + "','" + req.getParameter("rcname") + "'," + date + ",'" + house + "','" + grade + "')";
@@ -141,7 +141,7 @@ public class Submit extends HttpServlet {
                     System.err.println("SQLState:  " + e.getSQLState());
                     System.err.println("Message:   " + e.getMessage());
                 }
-                Cookie ck1 = new Cookie("house", "");
+                Cookie ck1 = new Cookie("house", "");//clears cookies
                 Cookie ck2 = new Cookie("grade", "");
                 Cookie ck3 = new Cookie("present", "");
                 Cookie ck4 = new Cookie("absent", "");
@@ -163,7 +163,7 @@ public class Submit extends HttpServlet {
                         + "values('" + submitter + "','" + receiver + "','" + req.getParameter("rcname") + "'," + date + ",'" + house + "','" + grade + "')";
                 Statement s = conn.createStatement();
                 s.executeUpdate(sql);
-                sql = "select RollCallID from RollCalls where date = " + date;
+                sql = "select RollCallID from RollCalls where date = " + date;//adds more rollcall data to database 
                 s.executeUpdate(sql);
                 ResultSet rs = s.executeQuery(sql);
                 String rollCallID = rs.getString("RollCallID");
@@ -186,7 +186,7 @@ public class Submit extends HttpServlet {
                 System.err.println("SQLState:  " + e.getSQLState());
                 System.err.println("Message:   " + e.getMessage());
             }
-            Cookie ck1 = new Cookie("house", "");
+            Cookie ck1 = new Cookie("house", "");//clears cookies
             Cookie ck2 = new Cookie("grade", "");
             Cookie ck3 = new Cookie("present", "");
             Cookie ck4 = new Cookie("absent", "");
@@ -211,7 +211,7 @@ public class Submit extends HttpServlet {
                     + "</html>");
         }
         if (req.getParameter("email") != null) {
-            emailHtml+="\nRoll Call taken by "+submitter;
+            emailHtml+="\nRoll Call taken by "+submitter;//sends email to recipient
             Email.send("sjcrollcall@gmail.com", "SJCrollcall1?", receiver + "@stjohnscollege.co.za", "Roll Call: " + req.getParameter("rcname") + "(" + house + ": " + grade + ")", emailHtml);
             
         }

@@ -12,8 +12,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,11 +24,14 @@ import javax.servlet.http.HttpServletResponse;
 public class Admin extends HttpServlet {
 
     @Override
+    //Receives HTML request from user. 
+    //HttpServletRequest is the information entered on the website and sent to the program as the user sends the request
+    //HttpServletResponse is the website data that will be sent to the user on their webpage
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         PrintWriter out = res.getWriter();
         res.setContentType("text/html");
         String action = req.getParameter("action");
-        String html = "<!DOCTYPE html>\n"
+        String html = "<!DOCTYPE html>\n"//starts a string which will contain the html for the response
                 + "<html>\n"
                 + "    <head>\n"
                 + "        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n"
@@ -71,19 +72,19 @@ public class Admin extends HttpServlet {
                 + "            </div>\n"
                 + "        </div>";
 
-        Cookie[] cookies = req.getCookies();
+        Cookie[] cookies = req.getCookies();//puts cookies in an array
         for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("username")) {
+            if (cookie.getName().equals("username")) {//gets username cookie
                 try {
-                    SQLiteJDBC sqlJDBC = new SQLiteJDBC();
+                    SQLiteJDBC sqlJDBC = new SQLiteJDBC();//connects to the SQL database
                     Connection conn = sqlJDBC.SQLconnect();
                     Statement s = conn.createStatement();
                     ResultSet rs = s.executeQuery("select * from Admin");
 
                     while (rs.next()) {
-                        if (rs.getString("StuID").equals(cookie.getValue())) {
-                            switch (action) {
-                                case "+u":
+                        if (rs.getString("StuID").equals(cookie.getValue())) {//checks if user is an admin
+                            switch (action) {//depending on the users choice of admin command, different html pages will appear
+                                case "+u"://add user
                                     html += "<form action=\"admin2\">";
                                     html+= "<input name=\"type\" id=\"hidden\" value=\"+u\">";
                                     html += "<div class=\"center\" style=\"text-align: center;height:70px\">\n"
@@ -123,21 +124,21 @@ public class Admin extends HttpServlet {
                                             + "        </select>\n"
                                             + "    </div>";
                                     break;
-                                case "-u":
+                                case "-u"://remove user
                                     html += "<form action=\"admin2\">";
                                     html+= "<input name=\"type\" id=\"hidden\" value=\"-u\">";
                                     html += "<div class=\"center\" style=\"text-align: center;height:70px\">\n"
                                             + "        <input type=\"text\" name=\"id\" placeholder=\"Enter username of user you want to remove\">\n"
                                             + "    </div>";
                                     break;
-                                case "+a":
+                                case "+a"://add admin
                                     html += "<form action=\"admin2\">";
                                     html+= "<input name=\"type\" id=\"hidden\" value=\"+a\">";
                                     html += "<div class=\"center\" style=\"text-align: center;height:70px\">\n"
                                             + "        <input type=\"text\" name=\"id\" placeholder=\"Enter username of admin you want to add\">\n"
                                             + "    </div>";
                                     break;
-                                case "-a":
+                                case "-a"://remove admin
                                     html += "<form action=\"admin2\">";
                                     html+= "<input name=\"type\" id=\"hidden\" value=\"-a\">";
                                     html += "<div class=\"center\" style=\"text-align: center;height:70px\">\n"
@@ -145,7 +146,7 @@ public class Admin extends HttpServlet {
                                             + "    </div>";
                                     break;
                                 default:
-                                //actually input something man
+                                
                             }
 
                             html += "<div class=\"center\" style=\"height: 40px\">\n"
@@ -161,7 +162,7 @@ public class Admin extends HttpServlet {
 
                         }
                     }
-                    //not an admmin
+                    //if they are not admin, it will display a message telling them they don't have access
                     html += "</div>\n"
                             + "        <div class=\"center\">\n"
                             + "            <h3 style=\"text-align: center\">Not an admin, please sign in with admin account to access these features</h3>\n"
@@ -170,9 +171,9 @@ public class Admin extends HttpServlet {
                             + "    </body>\n"
                             + "</html>";
                     html = "";
-                    out.print(html);
+                    out.print(html);//loads html page for user
                 } catch (SQLException ex) {
-                    Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("SQL Error");
                 }
             }
         }

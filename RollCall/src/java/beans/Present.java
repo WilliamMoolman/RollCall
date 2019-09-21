@@ -25,6 +25,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Present extends HttpServlet{
     @Override
+    //Receives HTML request from user. 
+    //HttpServletRequest is the information entered on the website and sent to the program as the user sends the request
+    //HttpServletResponse is the website data that will be sent to the user on their webpage
     public void doGet(HttpServletRequest req,HttpServletResponse res) throws IOException, NullPointerException{
         String house = null;
         String grade = null;
@@ -87,7 +90,7 @@ public class Present extends HttpServlet{
             SQLiteJDBC sqlJDBC = new SQLiteJDBC();
             Connection conn = sqlJDBC.SQLconnect();
             String sql = "select name,surname,StuID from Users where House = '"+house+"' and Grade = '"+grade+"'";
-            Statement s = conn.createStatement();
+            Statement s = conn.createStatement();//checks who is present
             ResultSet rs = s.executeQuery(sql);
             String[] checkID = new String[30];
             String[] present = new String[30];
@@ -109,7 +112,7 @@ public class Present extends HttpServlet{
                     label1:
                     try {
                         if(param.equals(checkID[y])){
-                            present[numPresent]=checkID[y];
+                            present[numPresent]=checkID[y];//checks whether they were bresent
                             numPresent++;
                             inset=true;
                             break label1;
@@ -131,7 +134,7 @@ public class Present extends HttpServlet{
                 String name2 = rs2.getString("Name");
                 String surname2 = rs2.getString("Surname");
                 html+="<div class=\"row\">\n" +
-"                <div class=\"col border\">\n" +
+"                <div class=\"col border\">\n" +//prints the names of those present to the html
 "                    <h5>"+name2+"</h5>\n" +
 "                </div>\n" +
 "                <div class=\"col border\">\n" +
@@ -159,7 +162,7 @@ public class Present extends HttpServlet{
         for(int l = 0;l<numAbsent;l++){
             abs+=absent[l]+",";
         }
-        Cookie ck = new Cookie("present",pres);
+        Cookie ck = new Cookie("present",pres);//adds users to cookies for later usage
         Cookie ck2 = new Cookie("absent",abs);
         res.addCookie(ck);
         res.addCookie(ck2);

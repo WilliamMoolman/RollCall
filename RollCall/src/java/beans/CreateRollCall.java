@@ -26,6 +26,9 @@ import javax.servlet.http.HttpServletResponse;
 public class CreateRollCall extends HttpServlet {
 
     @Override
+    //Receives HTML request from user. 
+    //HttpServletRequest is the information entered on the website and sent to the program as the user sends the request
+    //HttpServletResponse is the website data that will be sent to the user on their webpage
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
         String html = "<!DOCTYPE html>\n"
@@ -61,7 +64,7 @@ public class CreateRollCall extends HttpServlet {
                 + "                <img src=\"images/backsmol.png\" alt=\"Go Back\" id=\"back-button\" onclick=\"goBack()\">\n"
                 + "            </div>";
         String house = req.getParameter("house");
-        Cookie ck = new Cookie("house", house);
+        Cookie ck = new Cookie("house", house);//creates cookies to store the house and grade selected for later use
         res.addCookie(ck);
         String grade = req.getParameter("grade");
         Cookie ck2 = new Cookie("grade", grade);
@@ -74,7 +77,7 @@ public class CreateRollCall extends HttpServlet {
                 SQLiteJDBC sqlJDBC = new SQLiteJDBC();
                 Connection conn = sqlJDBC.SQLconnect();
                 String sql = "select name,surname,StuID from Users where House = '" + house + "' and Grade = '" + grade + "'";
-                Statement s = conn.createStatement();
+                Statement s = conn.createStatement();//selects group of students from house and grade to take roll call from
                 s.executeUpdate(sql);
                 ResultSet rs = s.executeQuery(sql);
                 
@@ -84,7 +87,7 @@ public class CreateRollCall extends HttpServlet {
                         String name = rs.getString("Name");
                         String surname = rs.getString("Surname");
                         String ID = rs.getString("StuID");
-                        html += "<div class=\"row\">\n"
+                        html += "<div class=\"row\">\n"//puts all the names on the html page
                                 + "                <div class=\"col border\">\n"
                                 + "                    <h5>" + name + "</h5>\n"
                                 + "                </div>\n"
@@ -142,7 +145,7 @@ public class CreateRollCall extends HttpServlet {
                     + "        <div id=\"bottom-right\"><button type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='help.jsp'\">Help</button></div>\n"
                     + "    </body>\n"
                     + "</html>";
-            out.print(html);
+            out.print(html);//prints html to user page
         }
 
     }

@@ -7,7 +7,6 @@ package beans;
 
 import java.sql.Connection;
 import database.SQLiteJDBC;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,6 +16,7 @@ import java.sql.Statement;
  * @author moolm
  */
 public class Test {
+    //A class for testing program functionality, does not affect rest of project
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         SQLiteJDBC sqlJDBC = new SQLiteJDBC();
         Connection conn = sqlJDBC.SQLconnect();
